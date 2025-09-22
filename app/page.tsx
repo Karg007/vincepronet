@@ -86,9 +86,9 @@ export default function SiteLanding() {
             <h2 className="text-3xl font-bold tracking-tight text-slate-900">Parlons de votre projet</h2>
             <p className="mt-2 text-slate-600">Envoyez un court message. Réponse rapide avec une estimation et les prochaines étapes.</p>
             <div className="mt-6 space-y-3 text-slate-600">
-              <p className="flex items-center gap-2"><Mail className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="mailto:info@vincepronet.com">info@vincepronet.com</a></p>
-              <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="tel:+15145550000">+1 (514) 555-0000</a></p>
-              <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-[#15b3c0]"/>Montréal & environs</p>
+              <p className="flex items-center gap-2"><Mail className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="mailto:info@vincepronet.com">vincepronet@gmail.com</a></p>
+              <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="tel:+14506134066">450-613-4066</a></p>
+              <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-[#15b3c0]"/>Entreprise canadienne</p>
             </div>
           </motion.div>
 
@@ -115,7 +115,7 @@ export default function SiteLanding() {
               <p className="text-slate-600 text-sm">Avant/après, maquettes et coulisses de projets.</p>
             </div>
           </div>
-          <a href="https://instagram.com/vincepronet" target="_blank" rel="noreferrer" className={btnMain}>Suivre @vincepronet</a>
+          <a href="https://www.instagram.com/vincepronet/" target="_blank" rel="noreferrer" className={btnMain}>Suivre @vincepronet</a>
         </motion.div>
       </section>
 
