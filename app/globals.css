@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --brand:#15B3C0;
+  --brand-dark:#109AA4;
+  --ink:#0A293F;
+  --tint:#EEF7F8;
+}
+body{ @apply bg-gradient-to-b from-white via-white to-[var(--tint)] text-slate-800; }
+a{ @apply underline-offset-2; }
