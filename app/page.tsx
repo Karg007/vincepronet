@@ -88,7 +88,6 @@ export default function SiteLanding() {
             <div className="mt-6 space-y-3 text-slate-600">
               <p className="flex items-center gap-2"><Mail className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="mailto:info@vincepronet.com">vincepronet@gmail.com</a></p>
               <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="tel:+14506134066">450-613-4066</a></p>
-              <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-[#15b3c0]"/>Entreprise canadienne</p>
             </div>
           </motion.div>
 
