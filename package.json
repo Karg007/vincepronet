@@ -8,7 +8,8 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "framer-motion": "11.2.10",
-    "lucide-react": "0.441.0"
+    "lucide-react": "0.441.0",
+    "resend": "^3.2.0"
   },
   "devDependencies": {
     "tailwindcss": "3.4.10",
