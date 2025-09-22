@@ -92,8 +92,8 @@ export default function SiteLanding() {
             <h2 className="text-3xl font-bold tracking-tight text-slate-900">Parlons de votre projet</h2>
             <p className="mt-2 text-slate-600">Envoyez un court message. Réponse rapide avec une estimation et les prochaines étapes.</p>
             <div className="mt-6 space-y-3 text-slate-600">
-              <p className="flex items-center gap-2"><Mail className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="mailto:vince.karg@gmail.com">vince.karg@gmail.com</a></p>
-              <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="tel:+15145550000">+1 (514) 555-0000</a></p>
+              <p className="flex items-center gap-2"><Mail className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="mailto:vincepronet@gmail.com">vincepronet@gmail.com</a></p>
+              <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="tel:+14506134066">+1 (450) 613-4066</a></p>
               <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-[#15b3c0]"/>Montréal & environs</p>
             </div>
           </motion.div>
