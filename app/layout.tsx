@@ -1,8 +1,16 @@
 import "./globals.css";
-export const metadata = {
-  title: "VinceProNet — Conception de site web",
-  description: "Conception de site web modernes pour commerces locaux et entrepreneurs.",
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "VinceProNet — Site vitrine",
+  description: "Sites vitrines modernes pour commerces locaux et entrepreneurs.",
 };
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="fr"><body>{children}</body></html>;
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="fr">
+      <body>{children}</body>
+    </html>
+  );
 }
