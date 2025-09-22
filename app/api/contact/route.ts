@@ -7,10 +7,10 @@ export async function POST(req: Request) {
   try {
     const form = await req.formData();
 
-    // Anti-spam simple (champ caché côté client)
+    // Anti-spam simple
     const gotcha = String(form.get("_gotcha") || "");
     if (gotcha.trim().length > 0) {
-      return NextResponse.json({ ok: true }); // on ignore poliment le bot
+      return NextResponse.json({ ok: true });
     }
 
     const name = String(form.get("name") || "");
@@ -22,14 +22,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Email et message requis." }, { status: 400 });
     }
 
-    // ⚠️ Destinataire final : TA boîte mail
+    // Destinataire final (toi)
     const TO = "vincepronet@gmail.com";
 
     await resend.emails.send({
-      // From de test chez Resend (évite la vérif de domaine au début)
+      // From de test Resend (pratique au début)
       from: "VinceProNet <onboarding@resend.dev>",
       to: TO,
-      reply_to: email, // tu pourras répondre directement au client
+      reply_to: email,
       subject: `Nouveau message — ${name || "Sans nom"} (VinceProNet)`,
       text:
         `Nom: ${name}\n` +
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Contact API error:", err);
     return NextResponse.json({ ok: false, error: "Erreur serveur." }, { status: 500 });
   }
