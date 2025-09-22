@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "VinceProNet — Site vitrine",
-  description: "Sites vitrines modernes pour commerces locaux et entrepreneurs.",
+  title: "VinceProNet",
+  description: "Sites modernes pour commerces locaux et entrepreneurs.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
