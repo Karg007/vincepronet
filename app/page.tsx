@@ -67,7 +67,7 @@ export default function SiteLanding() {
           <motion.div {...fadeUp}>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#15b3c0]/30 bg-[#15b3c0]/10 px-3 py-1 text-xs text-[#0a293f] shadow-sm">
               <Rocket className="h-3.5 w-3.5" />
-              Sites rapides, beaux et abordables
+              Sites rapides, beaux et abordables !
             </div>
             <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#0a293f] to-[#15b3c0]">
               Votre vitrine en ligne, conçue pour convertir.
@@ -81,7 +81,7 @@ export default function SiteLanding() {
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-500">
               <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-4 w-4 text-[#15b3c0]"/>Hébergement & maintenance</span>
-              <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-4 w-4 text-[#15b3c0]"/>Premier site possible à bas coût</span>
+              <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-4 w-4 text-[#15b3c0]"/>Premier site possible à faible coût</span>
               <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-4 w-4 text-[#15b3c0]"/>Support humain et francophone</span>
             </div>
           </motion.div>
@@ -91,11 +91,11 @@ export default function SiteLanding() {
       {/* Services */}
       <section id="services" className="mx-auto max-w-6xl px-4 py-16">
         <motion.div {...fadeUp} className="text-center mb-8">
-          <h2 className="text-3xl font-bold tracking-tight text-[#0a293f]">Ce que je fais</h2>
-          <p className="mt-2 text-slate-600">Sites vitrines modernes, rapides, et faciles à gérer.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-[#0a293f]">Pourquoi choisir VinceProNet?</h2>
+          <p className="mt-2 text-slate-600">Sites modernes, rapides, et faciles à gérer à des prix abordables pour les petites entreprises.</p>
         </motion.div>
         <ul className="mx-auto max-w-3xl grid md:grid-cols-3 gap-6 text-slate-700">
-          <li className="flex items-start gap-3"><Globe className="h-5 w-5 text-[#15b3c0]"/> Site vitrine</li>
+          <li className="flex items-start gap-3"><Globe className="h-5 w-5 text-[#15b3c0]"/> Site moderne et rapide</li>
           <li className="flex items-start gap-3"><Rocket className="h-5 w-5 text-[#15b3c0]"/> Refonte</li>
           <li className="flex items-start gap-3"><CheckCircle2 className="h-5 w-5 text-[#15b3c0]"/> Hébergement & maintenance</li>
         </ul>
@@ -115,7 +115,7 @@ export default function SiteLanding() {
                 <Mail className="h-4 w-4 text-[#15b3c0]"/>
                 <a className="underline" href="mailto:vincepronet@gmail.com">vincepronet@gmail.com</a>
               </p>
-              <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="tel:+15145550000">+1 (514) 555-0000</a></p>
+              <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="tel:+14506134066">+1 (450) 613-4066</a></p>
               <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-[#15b3c0]"/>Montréal & environs</p>
             </div>
           </motion.div>
