@@ -1,14 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Globe, Rocket, CheckCircle2, Mail, Phone, MapPin, Instagram } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function SiteLanding() {
+  const [sent, setSent] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
   const fadeUp = {
     initial: { opacity: 0, y: 24 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 }
   };
+
+  async function send(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setErr(null);
+    setSent(false);
+    const formEl = e.currentTarget;
+    const data = new FormData(formEl);
+    try {
+      const res = await fetch("/api/contact", { method: "POST", body: data });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        throw new Error(j?.error || "Échec d’envoi");
+      }
+      setSent(true);
+      formEl.reset();
+    } catch (e: any) {
+      setErr(e?.message || "Une erreur est survenue.");
+    }
+  }
 
   const btn = "inline-flex items-center justify-center rounded-2xl border transition-colors";
   const btnMain = `${btn} bg-[#15B3C0] hover:bg-[#109AA4] text-white border-transparent px-5 h-11`;
@@ -87,7 +113,6 @@ export default function SiteLanding() {
             <div className="mt-6 space-y-3 text-slate-600">
               <p className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-[#15b3c0]"/>
-                {/* Affiche bien ton email perso */}
                 <a className="underline" href="mailto:vincepronet@gmail.com">vincepronet@gmail.com</a>
               </p>
               <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-[#15b3c0]"/><a className="underline" href="tel:+15145550000">+1 (514) 555-0000</a></p>
@@ -95,17 +120,16 @@ export default function SiteLanding() {
             </div>
           </motion.div>
 
-          {/* Formspree placeholder: remplace XXXXYYYY par ton ID Formspree si tu utilises A. 
-              Si tu utilises l'option B (API Resend), on branchera ici onSubmit={...} */}
-          <motion.form {...fadeUp} action="https://formspree.io/f/XXXXYYYY" method="POST" className="bg-white border rounded-3xl p-6 shadow-sm">
-            <input type="hidden" name="_subject" value="Nouveau message — VinceProNet" />
-            <input type="text" name="_gotcha" className="hidden" />
+          <motion.form {...fadeUp} onSubmit={send} className="bg-white border rounded-3xl p-6 shadow-sm">
+            {/* Anti-spam honeypot */}
+            <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
             <div className="grid gap-4">
-              <input name="name" placeholder="Votre nom" required className={input} />
-              <input name="email" type="email" placeholder="Votre e-mail" required className={input} />
-              <input name="company" placeholder="Votre entreprise (optionnel)" className={input} />
-              <textarea name="message" placeholder="Décrivez brièvement votre besoin" required className={textarea} />
-              <button type="submit" className={btnMain}>Envoyer</button>
+              <Input name="name" placeholder="Votre nom" required className="rounded-2xl" />
+              <Input name="email" type="email" placeholder="Votre e-mail" required className="rounded-2xl" />
+              <Input name="company" placeholder="Votre entreprise (optionnel)" className="rounded-2xl" />
+              <Textarea name="message" placeholder="Décrivez brièvement votre besoin" required className="min-h-[120px] rounded-2xl" />
+              <Button type="submit" className="rounded-2xl bg-[#15b3c0] hover:bg-[#109aa4] text-white">Envoyer</Button>
+              {sent && <p className="text-[#15b3c0] text-sm">Message envoyé ✔</p>}
             </div>
           </motion.form>
         </div>
@@ -121,7 +145,9 @@ export default function SiteLanding() {
               <p className="text-slate-600 text-sm">Avant/après, maquettes et coulisses de projets.</p>
             </div>
           </div>
-          <a href="https://instagram.com/vincepronet" target="_blank" rel="noreferrer" className={btnMain}>Suivre @vincepronet</a>
+          <a href="https://instagram.com/vincepronet" target="_blank" rel="noreferrer" className={btnMain}>
+            Suivre @vincepronet
+          </a>
         </motion.div>
       </section>
 
@@ -130,8 +156,8 @@ export default function SiteLanding() {
         <div className="mx-auto max-w-6xl px-4 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
           <p>© {new Date().getFullYear()} VinceProNet. Tous droits réservés.</p>
           <div className="flex items-center gap-4">
-            <a href="#services" className="hover:text-[#15b3c0]">Services</a>
-            <a href="#contact" className="hover:text-[#15b3c0]">Contact</a>
+            <a href="#services" className="hover:text-[var(--brand)]">Services</a>
+            <a href="#contact" className="hover:text-[var(--brand)]">Contact</a>
           </div>
         </div>
       </footer>
