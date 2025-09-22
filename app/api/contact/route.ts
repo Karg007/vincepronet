@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+pronetimport { NextResponse } from "next/server";
 
 // Envoi via l'API HTTP de Resend (aucune lib à installer).
 // Dans Vercel → Project → Settings → Environment Variables :
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         from: "VinceProNet <onboarding@resend.dev>",
-        to: ["vince.karg@gmail.com"], // <- TA boîte de réception
+        to: ["vincepronet@gmail.com"], // <- TA boîte de réception
         reply_to: email,
         subject: `Nouveau message — VinceProNet : ${name || "Sans nom"}`,
         text: `Nom: ${name}
