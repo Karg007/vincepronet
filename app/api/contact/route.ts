@@ -1,14 +1,18 @@
-pronetimport { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
-// Envoi via l'API HTTP de Resend (aucune lib à installer).
-// Dans Vercel → Project → Settings → Environment Variables :
-//   RESEND_API_KEY = ta_clé_resend
-// Pour tester, l'adresse "from" ci-dessous fonctionne : onboarding@resend.dev
-// Ensuite, remplace-la par une adresse vérifiée chez Resend pour une meilleure délivrabilité.
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
+
+    // Anti-spam simple (champ caché côté client)
+    const gotcha = String(form.get("_gotcha") || "");
+    if (gotcha.trim().length > 0) {
+      return NextResponse.json({ ok: true }); // on ignore poliment le bot
+    }
+
     const name = String(form.get("name") || "");
     const email = String(form.get("email") || "");
     const company = String(form.get("company") || "");
@@ -18,38 +22,25 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Email et message requis." }, { status: 400 });
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ ok: false, error: "RESEND_API_KEY manquant dans Vercel." }, { status: 500 });
-    }
+    // ⚠️ Destinataire final : TA boîte mail
+    const TO = "vincepronet@gmail.com";
 
-    const r = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "VinceProNet <onboarding@resend.dev>",
-        to: ["vincepronet@gmail.com"], // <- TA boîte de réception
-        reply_to: email,
-        subject: `Nouveau message — VinceProNet : ${name || "Sans nom"}`,
-        text: `Nom: ${name}
-Email: ${email}
-Entreprise: ${company}
-
-Message:
-${message}`,
-      }),
+    await resend.emails.send({
+      // From de test chez Resend (évite la vérif de domaine au début)
+      from: "VinceProNet <onboarding@resend.dev>",
+      to: TO,
+      reply_to: email, // tu pourras répondre directement au client
+      subject: `Nouveau message — ${name || "Sans nom"} (VinceProNet)`,
+      text:
+        `Nom: ${name}\n` +
+        `Email: ${email}\n` +
+        `Entreprise: ${company}\n\n` +
+        `Message:\n${message}\n`,
     });
 
-    if (!r.ok) {
-      const err = await r.text();
-      return NextResponse.json({ ok: false, error: err || "Erreur API Resend" }, { status: 502 });
-    }
-
     return NextResponse.json({ ok: true });
-  } catch (e: any) {
-    return NextResponse.json({ ok: false, error: e?.message || "Erreur inconnue" }, { status: 500 });
+  } catch (err: any) {
+    console.error("Contact API error:", err);
+    return NextResponse.json({ ok: false, error: "Erreur serveur." }, { status: 500 });
   }
 }
