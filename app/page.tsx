@@ -99,7 +99,7 @@ export default function SiteLanding() {
               <input placeholder="Votre entreprise (optionnel)" className={input} />
               <textarea placeholder="Décrivez brièvement votre besoin" required className={textarea} />
               <button type="submit" className={btnMain}>Envoyer</button>
-              {sent && (<p className="text-[#15b3c0] text-sm">Message envoyé (démo). Remplacez ceci par votre intégration réelle.</p>)}
+              {sent && (<p className="text-[#15b3c0] text-sm">Message envoyé! Nous vous contacterons très bientôt :) </p>)}
             </div>
           </motion.form>
         </div>
