@@ -70,7 +70,7 @@ export default function SiteLanding() {
               Sites rapides, beaux et abordables !
             </div>
             <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#0a293f] to-[#15b3c0]">
-              Votre vitrine en ligne, conçue pour convertir.
+              Démarrez votre présence en ligne à faible coût.
             </h1>
             <p className="mt-4 text-slate-600 leading-relaxed">
               VinceProNet crée des sites web modernes pour commerces locaux et entrepreneurs. Design clair, chargement rapide, SEO prêt — pour attirer plus de clients sans casse-tête.
